@@ -12,28 +12,32 @@
       <div class="jumbrotron">
         <h1>PIG</h1>
       </div>
-      <form id="name">
-        <label for="name">Enter Your Name Here:</label>
-        <input type="text" name="name">
-        <button type="submit" name="name-button" id="name-button">Submit!</button>
+      <form id="players">
+        <div class="form-group">
+          <label for="name">Enter Player 1 Name Here:</label>
+          <input type="text" name="player-one-name">
+        </div>
+        <div class="form-group">
+          <label for="name">Enter Player 2 Name Here:</label>
+          <input type="text" name="player-two-name">
+          <button type="submit" name="name-button">Submit!</button>
+        </div>
       </form>
-      <button class="btn" type="button" id="roll">Roll!</button>
-      <button class="btn btn-success" type="button" id="hold">Hold!</button>
-      <div class="displayRoll">
-        <h3>Roll</h3>
-        <ul>
+      <div id="start-section">
+        <button class="btn" type="button" id="roll">Roll!</button>
+        <button class="btn btn-success" type="button" id="hold">Hold!</button>
+        <div>
+          <h3>Roll</h3>
+          <ul class="displayRoll">
 
-        </ul>
-      </div>
-      <div >
-        <h3>Turn total</h3>
-        <p class="displayTurn">
+          </ul>
+        </div>
+        <div>
+          <h3>Turn total</h3>
+          <p class="displayTurn">
 
-        </p>
-
-        <ul>
-
-        </ul>
+          </p>
+        </div>
       </div>
     </div>
   </body>
