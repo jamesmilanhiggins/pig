@@ -32,9 +32,13 @@ $(document).ready(function(){
     var newGame = new Game (userRoll);
     var userRoll = randomNumberGenerator();
     rollArray.push(userRoll);
+    var sum = rollArray.reduce((a, b) => a + b, 0);
+
+
 
     $(".displayRoll").append("<li>" + userRoll + "</li>");
-    console.log(rollArray);
+    $(".displayTurn").text( sum );
+
     });
 
 
