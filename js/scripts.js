@@ -1,12 +1,13 @@
 //Back End Logic
-function Game (roll, turn, total) {
-this.roll = roll;
-this.turn = turn;
-// this.total = total;
+function Player (name,score) {
+this.name = name;
+this.score = score;
 }
+function PigGame(player1){
+  this.players = [player1];
 
-// var player1 = new Player (roll, turn);
-// var player2 = new Player (roll, turn);
+}
+// var player2 = new Player (sum);
 
 
 // var newTurn = new Turn (randomNumberGenerator);
@@ -17,29 +18,37 @@ var randomNumberGenerator = function (){
 
 var rollArray = [];
 
-
-
-
-
-
 var result = 0;
 
 
 
 //Front End User Logic
 $(document).ready(function(){
-  $("#roll").click(function(){
-    var newGame = new Game (userRoll);
-    var userRoll = randomNumberGenerator();
-    rollArray.push(userRoll);
-    var sum = rollArray.reduce((a, b) => a + b, 0);
+  $("#name").submit(function(event){
+    event.preventDefault();
+    var nameInput = $("input[name=name]").val();
+    console.log(nameInput);
+    var newPlayer = new Player(nameInput, sumUserRoll);
+    var newPigGame = new PigGame(newPlayer);
+    console.log(newPlayer.name);
+    $("#roll").click(function(){
+      // var newGame = new Game (userRoll);
+      var userRoll = randomNumberGenerator();
+      rollArray.push(userRoll);
+      var sumUserRoll = rollArray.reduce((a, b) => a + b, 0);
 
 
 
-    $(".displayRoll").append("<li>" + userRoll + "</li>");
-    $(".displayTurn").text( sum );
+      $(".displayRoll").append("<li>" + userRoll + "</li>");
+      $(".displayTurn").text( sumUserRoll );
 
     });
+});
+
+  $("#hold").click(function() {
+
+  });
+
 
 
 
