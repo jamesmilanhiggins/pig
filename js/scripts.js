@@ -61,7 +61,8 @@ $(document).ready(function(){
       // // creates a variable that stores the total of the users roll for that turn
       // //pushes the users roll to the roll array variable
       // // sets the new player property of score equal to the sumUserRoll variable
-      $(".displayTurn").text(newGame.currentPlayer.score);
+      $(".displayPlayerOneTotal").text(playerOne.score);
+      $(".displayPlayerTwoTotal").text(playerTwo.score);
       // console.log(sumUserRoll);
     });
 
