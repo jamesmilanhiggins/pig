@@ -1,9 +1,20 @@
 //Back End Logic
 //constructor for player object that contains the users inputted name, the dice roll values, and their total score
-function Player (name, diceRoll, score) {
+function Player (name, diceRoll, subTotal) {
   this.name = name;
-  this.diceRoll = [];
-  this.score = score;
+  this.diceRoll = 0;
+  this.subTotal = 0;
+  this.gameTotal = 0;
+}
+Player.prototype.updateValue = function() {
+  console.log("update");
+    this.subTotal = 0;
+}
+Player.prototype.sumSubTotal = function() {
+	   this.subTotal += this.diceRoll;
+}
+Player.prototype.sumGameTotal = function() {
+  this.gameTotal += this.subTotal;
 }
 // constructor for game object that declares the current player and an array containing all the players
 function PigGame (player, players) {
@@ -25,6 +36,7 @@ var randomNumberGenerator = function (){
 
 //Front End User Logic
 $(document).ready(function(){
+
   // $("#start-section").hide();
   $("button[name=submit-button]").click(function(){
     // create variable to hold value of users inputted name
@@ -48,28 +60,39 @@ $(document).ready(function(){
     $("#roll-dice").click(function(){
 
       // creates a variable to hold the randomnumber when the user clicks the roll dice button
-      var currentDiceRoll = randomNumberGenerator();
+      newGame.currentPlayer.diceRoll = randomNumberGenerator();
 
       // pushing the value of the current dice roll to the diceRoll property of the current player
-      newGame.currentPlayer.diceRoll.push(currentDiceRoll);
+
+      if (newGame.currentPlayer.diceRoll === 1) {
+        newGame.currentPlayer.updateValue();
+      } else{
+        newGame.currentPlayer.sumSubTotal();
+      }
 
 
-      $(".displayRoll").append("<li>" + currentDiceRoll + "</li>");
-      var rollTotal = newGame.currentPlayer.diceRoll.reduce((a, b) => a + b, 0);
-      newGame.currentPlayer.score = rollTotal;
+      $(".displayRoll").append("<li>" + newGame.currentPlayer.diceRoll + "</li>");
+
 
       // // creates a variable that stores the total of the users roll for that turn
       // //pushes the users roll to the roll array variable
       // // sets the new player property of score equal to the sumUserRoll variable
-      $(".displayPlayerOneTotal").text(playerOne.score);
-      $(".displayPlayerTwoTotal").text(playerTwo.score);
       // console.log(sumUserRoll);
     });
 
 
     $("#hold").click(function(){
+      newGame.currentPlayer.sumGameTotal();
+      $(".displayRoll").text("");
       newGame.switchPlayer();
       console.log(newGame);
+      $(".displayPlayerOneRoundTotal").text(playerOne.subTotal);
+      $(".displayPlayerTwoRoundTotal").text(playerTwo.subTotal);
+      // $(".displayPlayerOneRoundTotal").text("");
+      // $(".displayPlayerTwoRoundTotal").text("");
+      $(".displayPlayerOneGameTotal").text(playerOne.gameTotal);
+      $(".displayPlayerTwoGameTotal").text(playerTwo.gameTotal);
+
     });
   });
 });
