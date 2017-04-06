@@ -7,7 +7,6 @@ function Player (name, diceRoll, subTotal) {
   this.gameTotal = 0;
 }
 Player.prototype.updateValue = function() {
-  console.log("update");
     this.subTotal = 0;
 }
 Player.prototype.sumSubTotal = function() {
@@ -36,7 +35,6 @@ var randomNumberGenerator = function (){
 
 //Front End User Logic
 $(document).ready(function(){
-
   // $("#start-section").hide();
   $("button[name=submit-button]").click(function(){
     // create variable to hold value of users inputted name
@@ -66,7 +64,7 @@ $(document).ready(function(){
 
       if (newGame.currentPlayer.diceRoll === 1) {
         newGame.currentPlayer.updateValue();
-      } else{
+      } else {
         newGame.currentPlayer.sumSubTotal();
       }
 
@@ -78,21 +76,23 @@ $(document).ready(function(){
       // //pushes the users roll to the roll array variable
       // // sets the new player property of score equal to the sumUserRoll variable
       // console.log(sumUserRoll);
-    });
+      // $(".displayCurrentPlayerTotal").text(currentPlayer.subTotal);
+      {
+      //   var playerClassString = ".displayPlay"
+      // }
+      console.log(newGame);
+  });
+
 
 
     $("#hold").click(function(){
       newGame.currentPlayer.sumGameTotal();
-      $(".displayRoll").text("");
+      newGame.currentPlayer.subTotal = 0;
       newGame.switchPlayer();
+      $(".displayRoll").text("");
       console.log(newGame);
-      $(".displayPlayerOneRoundTotal").text(playerOne.subTotal);
-      $(".displayPlayerTwoRoundTotal").text(playerTwo.subTotal);
-      // $(".displayPlayerOneRoundTotal").text("");
-      // $(".displayPlayerTwoRoundTotal").text("");
       $(".displayPlayerOneGameTotal").text(playerOne.gameTotal);
       $(".displayPlayerTwoGameTotal").text(playerTwo.gameTotal);
-
     });
   });
 });
