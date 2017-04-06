@@ -71,13 +71,12 @@ $(document).ready(function(){
 
       $(".displayRoll").append("<li>" + newGame.currentPlayer.diceRoll + "</li>");
 
-
       // // creates a variable that stores the total of the users roll for that turn
       // //pushes the users roll to the roll array variable
       // // sets the new player property of score equal to the sumUserRoll variable
       // console.log(sumUserRoll);
       // $(".displayCurrentPlayerTotal").text(currentPlayer.subTotal);
-      {
+
       //   var playerClassString = ".displayPlay"
       // }
       console.log(newGame);
@@ -93,6 +92,12 @@ $(document).ready(function(){
       console.log(newGame);
       $(".displayPlayerOneGameTotal").text(playerOne.gameTotal);
       $(".displayPlayerTwoGameTotal").text(playerTwo.gameTotal);
+
+      if (playerOne.gameTotal >= 100) {
+        alert("Congrats " + playerOne.name + " You Won!");
+      } else if (playerTwo.gameTotal >= 100) {
+        alert("Congrats "  + playerTwo.name + " You Won!");
+      }
     });
   });
 });
